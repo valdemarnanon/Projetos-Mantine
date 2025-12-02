@@ -1,7 +1,5 @@
+import { FeaturesCards } from "./home/components/FeaturesCards";
+
 export default function Home() {
-  return (
-    <div>
-      <h1>olá</h1>
-    </div>
-  );
+  return <FeaturesCards />;
 }
