@@ -1,0 +1,61 @@
+.container {
+    background-color: rgb(255, 255, 255);
+    color: black;
+    padding: 20px;
+    border: 1px solid grey;
+    border-radius: 15px;
+}
+
+.container > h1 {
+    text-align: center;
+    padding: 15px;
+}
+
+.container > form {
+    display: flex;
+    flex-direction: column;
+}
+
+.container > form > label {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.container > form > label > input {
+    padding: 5px;
+    background-color: rgb(201, 198, 198);
+    border: 1px solid rgb(143, 143, 143);
+    border-radius: 5px;
+}
+
+.rodape {
+
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.btn-gorjeta {
+    margin-top: 15px;
+    border: none;
+    border-radius: 5px;
+    background-color: rgb(1, 180, 10);
+    color: white;
+    padding: 10px;
+}
+
+.btn-x {
+    border: none;
+    border-radius: 5px;
+    background-color: rgb(180, 1, 1);
+    color: white;
+    padding: 10px;
+}
+
+.total {
+    margin-left: 10px;
+    font-size: 1.3em;
+    font-weight: bold;
+}
