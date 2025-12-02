@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 import { TextInput } from "@mantine/core";
-import classes from "./components/Input.module.css";
+import classes from "./styles/Input.module.css";
 
 import "./CalculadoraGorjeta.css";
 
@@ -12,8 +12,8 @@ function CalculadoraGorjeta() {
   const [total, setTotal] = useState("R$ 0.00");
 
   const [focused, setFocused] = useState(false);
-  const [value, setValue] = useState("");
-  const floating = value.trim().length !== 0 || focused || undefined;
+
+  const floating = conta.trim().length !== 0 || focused || undefined;
 
   const [error, setError] = useState("");
 
@@ -23,6 +23,11 @@ function CalculadoraGorjeta() {
     let porcentagem = Number(gorjeta) / 100;
     let total = Number(conta) * porcentagem;
 
+    if (isNaN(Number(conta)) && isNaN(Number(gorjeta))) {
+      setTotal("R$ 0.00");
+      setError("Porfavor, digite um numero valido");
+      return;
+    }
     if (conta === "") {
       setError("Por favor, adicione o valor da conta.");
     } else if (gorjeta === "") {
@@ -40,8 +45,8 @@ function CalculadoraGorjeta() {
   };
 
   return (
-    <>
-      <div className="container">
+    <div className="container">
+      <section className="calculadoraGorjeta">
         <h1>Calculadora de gorjetas</h1>
         <p>
           Insira o valor da conta e a porcentagem da gorjeta para calcular o
@@ -49,22 +54,36 @@ function CalculadoraGorjeta() {
         </p>
         <form onSubmit={handleSubmit}>
           <label>
-            <p>Valor da conta:</p>
-            <input
-              type="number"
+            <TextInput
+              label="Valor da conta:  "
+              placeholder="Digite o valor da conta."
+              required
+              classNames={classes}
               value={conta}
-              onChange={(value) => setConta(value.target.value)}
-              placeholder="Valor da conta"
+              onChange={(event) => setConta(event.currentTarget.value)}
+              onFocus={() => setFocused(true)}
+              onBlur={() => setFocused(false)}
+              mt="xl"
+              autoComplete="nope"
+              data-floating={floating}
+              labelProps={{ "data-floating": floating }}
             />
           </label>
 
           <label>
-            <p>Porcentagem da gorjeta:</p>
-            <input
-              type="number"
+            <TextInput
+              label="Porcentagem da gorjeta:  "
+              placeholder="Digite a Porcentagem da gorjeta."
+              required
+              classNames={classes}
               value={gorjeta}
-              onChange={(value) => setGorjeta(value.target.value)}
-              placeholder="Porcentagem da gorjeta"
+              onChange={(event) => setGorjeta(event.currentTarget.value)}
+              onFocus={() => setFocused(true)}
+              onBlur={() => setFocused(false)}
+              mt="xl"
+              autoComplete="nope"
+              data-floating={floating}
+              labelProps={{ "data-floating": floating }}
             />
           </label>
 
@@ -73,20 +92,6 @@ function CalculadoraGorjeta() {
           </button>
         </form>
         {error && <p>{error}</p>}
-        <TextInput
-          label="Valor da conta:  "
-          placeholder="Digite o valor da conta."
-          required
-          classNames={classes}
-          value={value}
-          onChange={(event) => setConta(event.currentTarget.value)}
-          onFocus={() => setFocused(true)}
-          onBlur={() => setFocused(false)}
-          mt="md"
-          autoComplete="nope"
-          data-floating={floating}
-          labelProps={{ "data-floating": floating }}
-        />
 
         <div className="rodape">
           <p>
@@ -104,8 +109,8 @@ function CalculadoraGorjeta() {
             limpar
           </button>
         </div>
-      </div>
-    </>
+      </section>
+    </div>
   );
 }
 

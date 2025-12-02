@@ -1,4 +1,11 @@
 .container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 98vh;
+}
+
+.calculadoraGorjeta {
     background-color: rgb(255, 255, 255);
     color: black;
     padding: 20px;
@@ -6,23 +13,23 @@
     border-radius: 15px;
 }
 
-.container > h1 {
+.calculadoraGorjeta > h1 {
     text-align: center;
     padding: 15px;
 }
 
-.container > form {
+.calculadoraGorjeta > form {
     display: flex;
     flex-direction: column;
 }
 
-.container > form > label {
+.calculadoraGorjeta > form > label {
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
 
-.container > form > label > input {
+.calculadoraGorjeta > form > label > input {
     padding: 5px;
     background-color: rgb(201, 198, 198);
     border: 1px solid rgb(143, 143, 143);
