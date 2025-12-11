@@ -1,4 +1,4 @@
-import { ReactNode, useState } from "react";
+import { useState } from "react";
 import {
   IconFlame,
   IconUsersPlus,
@@ -7,11 +7,13 @@ import {
   IconSettings,
   IconHelp,
 } from "@tabler/icons-react";
+
 import { Tooltip, UnstyledButton } from "@mantine/core";
 import classes from "./Navbar.module.css";
 import { NavLink, useLocation } from "react-router";
 
-const mainLinksMockdata = [
+// Links Navbar principal
+const mainLinks = [
   {
     icon: IconMenu2,
     label: "Menu",
@@ -50,11 +52,13 @@ const mainLinksMockdata = [
   },
 ];
 
-const mainLinksMockdataUnder = [
+// Links Navbar principal - baixo
+const mainLinksBottom = [
   { icon: IconHelp, label: "Help" },
   { icon: IconSettings, label: "Settings" },
 ];
 
+// Linsk Sub nav principal
 const mainLinksSub = [
   { icon: IconHelp, label: "Help", url: "/" },
   { icon: IconSettings, label: "Settings", url: "/" },
@@ -63,14 +67,14 @@ const mainLinksSub = [
 const Navbar = () => {
   const location = useLocation();
   const activeRoute =
-    mainLinksMockdata.find((item) => location.pathname.startsWith(item.url))
-      ?.label || "/";
+    mainLinks.find((item) => location.pathname.startsWith(item.url))?.label ||
+    "/";
 
   const active = activeRoute;
 
   const [activeLink, setActiveLink] = useState("");
 
-  const mainLinks = mainLinksMockdata.map((link) => (
+  const links = mainLinks.map((link) => (
     <NavLink key={link.label} to={link.url}>
       <Tooltip
         label={link.label}
@@ -88,7 +92,7 @@ const Navbar = () => {
     </NavLink>
   ));
 
-  const mainLinksUnder = mainLinksMockdataUnder.map((link) => (
+  const linksBottom = mainLinksBottom.map((link) => (
     <Tooltip
       key={link.label}
       label={link.label}
@@ -118,8 +122,8 @@ const Navbar = () => {
     </NavLink>
   ));
 
-  const activeSublink = mainLinksMockdata.find((item) => item.label === active);
-  console.log(activeSublink);
+  const activeSublink = mainLinks.find((item) => item.label === active);
+
   const subLinks = activeSublink?.sublinks?.map((sub) => (
     <NavLink
       key={sub.label}
@@ -137,8 +141,8 @@ const Navbar = () => {
     <nav className={classes.navbar}>
       <div className={classes.wrapper}>
         <div className={classes.aside}>
-          <div className={classes.topItems}>{mainLinks}</div>
-          <div className={classes.bottomItems}>{mainLinksUnder}</div>
+          <div className={classes.topItems}>{links}</div>
+          <div className={classes.bottomItems}>{linksBottom}</div>
         </div>
 
         <div className={classes.main}>
