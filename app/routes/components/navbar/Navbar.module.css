@@ -106,13 +106,6 @@
     color: light-dark(var(--mantine-color-dark), var(--mantine-color-light));
   }
 
-  &[data-active] {
-    &,
-    &:hover {
-      border-left-color: var(--mantine-color-blue-filled);
-      background-color: var(--mantine-color-blue-filled);
-      color: var(--mantine-color-white);
-    }
-  }
+  
 }
 

@@ -45,8 +45,16 @@ const mainLinks = [
         label: "Cadastrar usuário",
         url: "/cadastrar/register-user",
       },
-      { icon: IconUserMinus, label: "Remover usuário", url: "/cadastrar" },
-      { icon: IconUserSquare, label: "Lista de usuário", url: "/cadastrar" },
+      {
+        icon: IconUserMinus,
+        label: "Remover usuário",
+        url: "/cadastrar/delete-user",
+      },
+      {
+        icon: IconUserSquare,
+        label: "Lista de usuário",
+        url: "/cadastrar/list-user",
+      },
     ],
   },
   {
@@ -79,8 +87,6 @@ const Navbar = () => {
     "/";
 
   const active = activeRoute;
-
-  const [activeLink, setActiveLink] = useState(active);
 
   const links = mainLinks.map((link) => (
     <NavLink key={link.label} to={link.url}>
@@ -118,13 +124,7 @@ const Navbar = () => {
   ));
 
   const subLinksMain = mainLinksSub.map((link) => (
-    <NavLink
-      key={link.label}
-      to={link.url}
-      className={classes.link}
-      data-active={active === link.label || undefined}
-      onClick={() => setActiveLink(link.label)}
-    >
+    <NavLink key={link.label} to={link.url} className={classes.link}>
       <link.icon size={20} />
       {link.label}
     </NavLink>
@@ -133,13 +133,7 @@ const Navbar = () => {
   const activeSublink = mainLinks.find((item) => item.label === active);
 
   const subLinks = activeSublink?.sublinks?.map((sub) => (
-    <NavLink
-      key={sub.label}
-      to={sub.url}
-      className={classes.link}
-      data-active={activeLink === sub.label || undefined}
-      onClick={() => setActiveLink(sub.label)}
-    >
+    <NavLink key={sub.label} to={sub.url} className={classes.link}>
       <sub.icon size={20} />
       {sub.label}
     </NavLink>
