@@ -6,6 +6,9 @@ import {
   IconMenu2,
   IconSettings,
   IconHelp,
+  IconUserPlus,
+  IconUserMinus,
+  IconUserSquare,
 } from "@tabler/icons-react";
 
 import { Tooltip, UnstyledButton } from "@mantine/core";
@@ -37,8 +40,13 @@ const mainLinks = [
     label: "Cadastrar Usuários",
     url: "/cadastrar",
     sublinks: [
-      { icon: IconMenu2, label: "Novo Usuário", url: "/cadastrar/novo" },
-      { icon: IconMenu2, label: "Listar", url: "/cadastrar/listar" },
+      {
+        icon: IconUserPlus,
+        label: "Cadastrar usuário",
+        url: "/cadastrar/register-user",
+      },
+      { icon: IconUserMinus, label: "Remover usuário", url: "/cadastrar" },
+      { icon: IconUserSquare, label: "Lista de usuário", url: "/cadastrar" },
     ],
   },
   {
@@ -72,7 +80,7 @@ const Navbar = () => {
 
   const active = activeRoute;
 
-  const [activeLink, setActiveLink] = useState("");
+  const [activeLink, setActiveLink] = useState(active);
 
   const links = mainLinks.map((link) => (
     <NavLink key={link.label} to={link.url}>
@@ -114,7 +122,7 @@ const Navbar = () => {
       key={link.label}
       to={link.url}
       className={classes.link}
-      data-active={activeLink === link.label || undefined}
+      data-active={active === link.label || undefined}
       onClick={() => setActiveLink(link.label)}
     >
       <link.icon size={20} />

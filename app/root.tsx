@@ -53,9 +53,11 @@ export function Layout({ children }: { children: React.ReactNode }) {
 
 export default function App() {
   return (
-    <div>
+    <div className="default">
       <Navbar />
-      <Outlet />
+      <div>
+        <Outlet />
+      </div>
     </div>
   );
 }
