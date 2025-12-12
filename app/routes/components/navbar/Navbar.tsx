@@ -1,4 +1,3 @@
-import { useState } from "react";
 import {
   IconFlame,
   IconUsersPlus,
@@ -14,6 +13,7 @@ import {
 import { Tooltip, UnstyledButton } from "@mantine/core";
 import classes from "./Navbar.module.css";
 import { NavLink, useLocation } from "react-router";
+import { useState } from "react";
 
 // Links Navbar principal
 const mainLinks = [
@@ -88,8 +88,14 @@ const Navbar = () => {
 
   const active = activeRoute;
 
+  const [open, setOpen] = useState(false);
+
   const links = mainLinks.map((link) => (
-    <NavLink key={link.label} to={link.url}>
+    <NavLink
+      key={link.label}
+      to={link.url}
+      onClick={() => (open ? setOpen(!open) : setOpen(true))}
+    >
       <Tooltip
         label={link.label}
         position="right"
@@ -146,10 +152,16 @@ const Navbar = () => {
           <div className={classes.topItems}>{links}</div>
           <div className={classes.bottomItems}>{linksBottom}</div>
         </div>
+        {/* Is active ? true : false fazer um ativo para subnav */}
 
-        <div className={classes.main}>
+        {open && (
+          <div className={classes.main}>
+            {active !== "/" ? subLinks : subLinksMain}
+          </div>
+        )}
+        {/* <div className={classes.main}>
           {active !== "/" ? subLinks : subLinksMain}
-        </div>
+        </div> */}
       </div>
     </nav>
   );
