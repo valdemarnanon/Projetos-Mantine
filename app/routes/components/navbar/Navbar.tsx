@@ -61,10 +61,7 @@ const mainLinks = [
     icon: IconGauge,
     label: "Dashboard",
     url: "/dashboard",
-    sublinks: [
-      { icon: IconMenu2, label: "Resumo", url: "/dashboard/resumo" },
-      { icon: IconMenu2, label: "Analytics", url: "/dashboard/analytics" },
-    ],
+    sublinks: [],
   },
 ];
 
@@ -94,7 +91,9 @@ const Navbar = () => {
     <NavLink
       key={link.label}
       to={link.url}
-      onClick={() => (open ? setOpen(!open) : setOpen(true))}
+      onClick={() =>
+        link.label != "Dashboard" ? setOpen(true) : setOpen(false)
+      }
     >
       <Tooltip
         label={link.label}
@@ -152,16 +151,12 @@ const Navbar = () => {
           <div className={classes.topItems}>{links}</div>
           <div className={classes.bottomItems}>{linksBottom}</div>
         </div>
-        {/* Is active ? true : false fazer um ativo para subnav */}
 
         {open && (
           <div className={classes.main}>
             {active !== "/" ? subLinks : subLinksMain}
           </div>
         )}
-        {/* <div className={classes.main}>
-          {active !== "/" ? subLinks : subLinksMain}
-        </div> */}
       </div>
     </nav>
   );
